@@ -89,6 +89,13 @@ class Brakeman::Report::Markdown < Brakeman::Report::Table
     warning["Warning Type"] = "[#{warning['Warning Type']}](#{original.link})" if original.link
     warning
   end
+  
+  def convert_ignored_warning warning, original
+    warning = convert_warning(warning, original)
+    warning['File'] = original.file.relative
+    warning['Note'] = CGI.escapeHTML(@ignore_filter.note_for(original) || "")
+    warning
+  end
 
   # Escape and code format warning message
   def markdown_message warning, message
