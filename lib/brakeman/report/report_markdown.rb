@@ -83,6 +83,14 @@ class Brakeman::Report::Markdown < Brakeman::Report::Table
       t.add_row([checks.checks_run.sort.join(", ")])
     end
   end
+  
+  def generate_ignored_warnings
+    render_warnings ignored_warnings,
+                    :ignored,
+                    'ignored_warnings',
+                    ['Confidence', 'Warning Type', 'File', 'Message', 'Note'],
+                    'Warning Type'
+  end
 
   def convert_warning warning, original
     warning["Message"] = markdown_message original, warning["Message"]
