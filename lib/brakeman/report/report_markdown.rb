@@ -52,6 +52,7 @@ class Brakeman::Report::Markdown < Brakeman::Report::Table
     output_table("Controller Warnings:", generate_controller_warnings, out)
     output_table("Model Warnings:", generate_model_warnings, out)
     output_table("View Warnings:", generate_template_warnings, out)
+    output_table("Ignored Warnings:", generate_ignored_warnings, out)
 
     out
   end
